@@ -17,7 +17,7 @@
 <style>
 :root{
   --bg:#f6f7f9; --surface:#ffffff; --surface-2:#eef0f4; --text:#0f1218; --muted:#5b6474; --line:#e2e5eb;
-  --brand:#5b5bf7; --brand-2:#8b5cf6; --brand-ink:#ffffff; --brand-solid:#4f46e5; --ok:#15803d; --warn:#d97706; --warn-ink:#a16207; --bad:#dc2626; --field:#8a93a3; --t-ink:#ffffff;
+  --brand:#5b5bf7; --brand-2:#8b5cf6; --brand-ink:#ffffff; --brand-solid:#4f46e5; --ok:#15803d; --warn:#d97706; --warn-ink:#a16207; --bad:#dc2626; --field:#8a93a3; --t-ink:#ffffff; --pill-brand:#4338ca;
   --shadow:0 1px 2px rgba(15,18,24,.06),0 4px 16px rgba(15,18,24,.06);
   --r:16px; --r-sm:10px;
   --t-easy:#15803d; --t-recovery:#0f766e; --t-long:#2563eb; --t-tempo:#c2410c; --t-intervals:#e11d48; --t-hills:#a16207;
@@ -29,7 +29,7 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#0b0d12; --surface:#151821; --surface-2:#1d212c; --text:#eef1f6; --muted:#9aa3b2; --line:#272c38;
-    --brand:#7c7cff; --brand-2:#a78bfa; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); --brand-solid:#4f46e5; --warn-ink:#fbbf24; --field:#5c6577; --t-ink:#0b0d12; --ok:#22c55e; --z0:#94a3b8; --z1:#5eead4; --z2:#4ade80; --z3:#facc15; --z4:#fb923c; --z5:#fb7185;
+    --brand:#7c7cff; --brand-2:#a78bfa; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); --brand-solid:#4f46e5; --warn-ink:#fbbf24; --field:#5c6577; --t-ink:#0b0d12; --ok:#22c55e; --bad:#f87171; --pill-brand:#a5b4fc; --z0:#94a3b8; --z1:#5eead4; --z2:#4ade80; --z3:#facc15; --z4:#fb923c; --z5:#fb7185;
     --t-easy:#22c55e; --t-recovery:#2dd4bf; --t-long:#60a5fa; --t-tempo:#fb923c; --t-intervals:#fb7185; --t-hills:#d4a72c;
     --t-fartlek:#c084fc; --t-progression:#facc15; --t-racepace:#f472b6; --t-race:#fbbf24; --t-runwalk:#34d399; --t-strength:#94a3b8;
     color-scheme: dark;
@@ -37,7 +37,7 @@
 }
 :root[data-theme="dark"]{
   --bg:#0b0d12; --surface:#151821; --surface-2:#1d212c; --text:#eef1f6; --muted:#9aa3b2; --line:#272c38;
-  --brand:#7c7cff; --brand-2:#a78bfa; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); --brand-solid:#4f46e5; --warn-ink:#fbbf24; --field:#5c6577; --t-ink:#0b0d12; --ok:#22c55e; --z0:#94a3b8; --z1:#5eead4; --z2:#4ade80; --z3:#facc15; --z4:#fb923c; --z5:#fb7185;
+  --brand:#7c7cff; --brand-2:#a78bfa; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); --brand-solid:#4f46e5; --warn-ink:#fbbf24; --field:#5c6577; --t-ink:#0b0d12; --ok:#22c55e; --bad:#f87171; --pill-brand:#a5b4fc; --z0:#94a3b8; --z1:#5eead4; --z2:#4ade80; --z3:#facc15; --z4:#fb923c; --z5:#fb7185;
   --t-easy:#22c55e; --t-recovery:#2dd4bf; --t-long:#60a5fa; --t-tempo:#fb923c; --t-intervals:#fb7185; --t-hills:#d4a72c;
   --t-fartlek:#c084fc; --t-progression:#facc15; --t-racepace:#f472b6; --t-race:#fbbf24; --t-runwalk:#34d399; --t-strength:#94a3b8;
   color-scheme: dark;
@@ -74,7 +74,7 @@ h3{font-size:16px}
 .icon-btn{width:44px;height:44px;border-radius:999px;border:1px solid var(--line);background:var(--surface);display:inline-grid;place-items:center;flex:none}
 .icon-btn[disabled]{opacity:.35;cursor:not-allowed}
 .pill{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;background:var(--surface-2);color:var(--muted);letter-spacing:.02em}
-.pill.brand{background:color-mix(in srgb,var(--brand) 15%,transparent);color:var(--brand)}
+.pill.brand{background:color-mix(in srgb,var(--brand) 12%,transparent);color:var(--pill-brand)}
 .badge{display:inline-grid;place-items:center;min-width:40px;height:40px;padding:0 6px;border-radius:12px;font-weight:800;font-size:11px;letter-spacing:.04em;color:var(--t-ink);background:var(--tc);flex:none}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
@@ -132,14 +132,14 @@ nav.tabs svg{width:24px;height:24px}
 .dot.done{box-shadow:0 0 0 2px var(--surface),0 0 0 3.5px var(--tc)}
 .phase-Base{--pc:var(--ph-Base)}.phase-Build{--pc:var(--ph-Build)}.phase-Peak{--pc:var(--ph-Peak)}.phase-Taper{--pc:var(--ph-Taper)}.phase-Race{--pc:var(--ph-Race)}
 .ppill{background:color-mix(in srgb,var(--pc) 20%,transparent);color:var(--text)}
-.hero{position:relative;overflow:hidden;color:#fff;background:radial-gradient(120% 140% at 100% 0%,#8b5cf6 0%,#5b5bf7 40%,#1e1b4b 100%);border:0}
-.hero .muted{color:rgba(255,255,255,.75)}
+.hero{position:relative;overflow:hidden;color:#fff;background:radial-gradient(120% 140% at 100% 0%,#7c3aed 0%,#4f46e5 40%,#1e1b4b 100%);border:0}
+.hero .muted{color:rgba(255,255,255,.92)}
 .hero .big{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1}
 .stat{background:var(--surface-2);border-radius:12px;padding:12px}
 .stat .v{font-size:22px;font-weight:800;letter-spacing:-.02em}
 .stat .l{font-size:12px;color:var(--muted);font-weight:600}
 .hero .stat{background:rgba(255,255,255,.12)}
-.hero .stat .l{color:rgba(255,255,255,.75)}
+.hero .stat .l{color:rgba(255,255,255,.92)}
 
 /* tables */
 table{width:100%;border-collapse:collapse}
@@ -200,8 +200,8 @@ label.f{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
 .sheet .in{max-width:720px;margin:0 auto;padding:8px 16px 0}
 .sheet .grab{width:44px;height:5px;border-radius:9px;background:var(--line);margin:6px auto 10px}
 @media (min-width:760px){.sheet{left:50%;right:auto;width:680px;transform:translate(-50%,110%);bottom:24px;border-radius:24px;max-height:86vh}.sheet.on{transform:translate(-50%,0)}}
-.whead{padding:18px;border-radius:var(--r);color:#fff;background:linear-gradient(135deg,color-mix(in srgb,var(--tc) 62%,#000),color-mix(in srgb,var(--tc) 35%,#000))}
-.whead .muted{color:rgba(255,255,255,.8)}
+.whead{padding:18px;border-radius:var(--r);color:#fff;background:linear-gradient(135deg,color-mix(in srgb,var(--tc) 48%,#000),color-mix(in srgb,var(--tc) 30%,#000))}
+.whead .muted{color:rgba(255,255,255,.92)}
 .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
 .metrics div{background:rgba(255,255,255,.15);border-radius:12px;padding:10px}
 .metrics b{display:block;font-size:20px;letter-spacing:-.02em}
@@ -585,7 +585,11 @@ const Engine = (() => {
       if (want > curV + maxGain) {
         goalV = curV + maxGain;
         goalNote = `Your goal of ${fmtTime(P.goalSec)} is ambitious for ${Wm} weeks. We’ll train you towards ${fmtTime(predict(goalV, raceM))} and adapt as you get fitter.`;
-      } else goalV = Math.max(want, curV);
+      } else if (want >= curV) goalV = want;
+    }
+    if (isRace && userGoal && vdotFrom(raceM, userGoal) < curV) {
+      goalNote = `You’re already capable of about ${fmtTime(predict(curV, raceM))} — faster than your goal of ${fmtTime(userGoal)}. We’ve set a target of ${fmtTime(predict(goalV, raceM))} instead.`;
+      userGoal = null;
     }
     if (isRace) { goalSec = predict(goalV, raceM); if (userGoal && userGoal >= goalSec) goalSec = userGoal; goalPace = goalSec / (raceM / 1000); }
     const goalFb = G.race === '5k' || !G.race ? 'FIVE' : G.race === '10k' ? 'TEN' : G.race === 'half' ? 'HM' : 'M';
@@ -818,7 +822,7 @@ const Engine = (() => {
     const raceW = weeks.flatMap(z => z.workouts).find(z => z.type === 'race');
     return {
       created: fmtDate(new Date()), profile: P, weeks, curV, goalV, goalPace, goalSec, userGoal, goalFb,
-      raceDate: raceW ? raceW.date : null, warnings,
+      raceDate: (isRace || P.goal === 'start') && raceW ? raceW.date : null, warnings,
     };
   }
   const QUAL = new Set(['tempo', 'intervals', 'hills', 'fartlek', 'progression', 'racepace']);
@@ -926,7 +930,11 @@ function curWeekIndex(r = me()) {
   for (let i = 0; i < ws.length; i++) { const end = E.fmtDate(E.addDays(E.parseDate(ws[i].start), 6)); if (t <= end) return i; }
   return ws.length - 1;
 }
-function ptFor(week, r = me()) { return E.paceTable(week.v + adjOf(r), r.plan.goalPace, r.plan.goalFb || 'HM'); }
+function ptFor(week, r = me()) {
+  const a = adjOf(r); let gp = r.plan.goalPace;
+  if (gp && a) { const base = E.paceTable(week.v, null, 'M'), adj = E.paceTable(week.v + a, null, 'M'); gp = gp * adj.M / base.M; }
+  return E.paceTable(week.v + a, gp, r.plan.goalFb || 'HM');
+}
 function allWorkouts(r = me()) { return r.plan.weeks.flatMap(w => w.workouts); }
 function statusOf(w, r = me()) {
   const l = r.log[w.id];
@@ -967,7 +975,7 @@ function render() {
     const r = me();
     const body = tab === 'week' ? renderWeek(r) : tab === 'plan' ? renderPlan(r) : tab === 'paces' ? renderPaces(r) : renderMe(r);
     root.innerHTML = `<main class="wrap">${topbar(r)}${body}</main>${nav()}`;
-    bindCommon();
+    bindCommon($('#root'));
     if (tab === 'plan') { const c = $('.weekrow.cur'); if (c && !render._scrolled) { render._scrolled = true; } }
   } catch (e) {
     console.error(e);
@@ -1013,7 +1021,7 @@ function ringSvg(done, total) {
 let justDone = null;
 function workoutCard(w, r) {
   const st = statusOf(w, r); const t = wTotals(w, r); const l = r.log[w.id];
-  const feel = l?.feel ? { easy: 'felt easy', right: 'felt just right', hard: 'felt hard' }[l.feel] : '';
+  const fe = l?.feel || l?.feelOld; const feel = fe ? { easy: 'felt easy', right: 'felt just right', hard: 'felt hard' }[fe] : '';
   const meta = st === 'done' ? `Done${l.km ? ' · ' + distKm(l.km) : w.type === 'strength' ? '' : ' · ' + dist(t.m)}${feel ? ' · ' + feel : ''}`
     : w.type === 'strength' ? `${TYPES[w.type].label} · ${num(w.mins)} min` : `${TYPES[w.type].label} · ${dist(t.m)} · ~${dur(t.sec)}`;
   const icon = st === 'done' ? `<span class="check ${justDone === w.id ? 'pop' : ''}">${ICON.check}</span>` : st === 'skipped' ? `<span class="pill">Skipped</span>` : st === 'missed' ? `<span class="small" style="color:var(--bad);font-weight:700">Missed</span>` : `<span class="muted">${ICON.right}</span>`;
@@ -1029,6 +1037,7 @@ function keyPace(w, pt) {
   main.sort((a, b) => order.indexOf(a.p) - order.indexOf(b.p));
   const s = main[0]; if (!s) return '';
   if (s.p === 'E' || s.p === 'LR') return paceRange(pt.Elo, pt.Ehi);
+  if (s.p === 'RC') return `> ${pace(pt.Ehi)}`;
   if (s.p === 'HILL') return 'hard uphill effort'; if (s.p === 'WALK') return 'walk'; if (s.p === 'STR') return 'fast & relaxed';
   return pace(pt[s.p]);
 }
@@ -1047,7 +1056,8 @@ function todayCard(r) {
       <div class="small muted">${dist(tt.m)} · ~${dur(tt.sec)} · key pace <b style="color:var(--text)">${keyPace(due, pt)}</b></div>
       <button class="btn primary block" style="margin-top:12px" data-open="${esc(due.id)}">View session</button></div>`;
   }
-  if (items.length) return `<div class="card celebrate"><div class="who"><span class="check">${ICON.check}</span> Today’s run is done — nice work!</div><p class="small muted" style="margin:0">${nxTxt}</p></div>`;
+  if (items.some(w => r.log[w.id]?.done)) return `<div class="card celebrate"><div class="who"><span class="check">${ICON.check}</span> Today’s run is done — nice work!</div><p class="small muted" style="margin:0">${nxTxt}</p></div>`;
+  if (items.length) return `<div class="card coach"><div class="eyebrow muted">Today</div><div class="who" style="margin-top:6px">Session skipped</div><p class="small muted" style="margin:0">No stress — consistency over weeks is what counts. ${nxTxt}</p></div>`;
   const beforeLong = nx && nx.type === 'long' && daysBetween(t, nx.date) === 1;
   return `<div class="card coach"><div class="eyebrow muted">Today</div><div class="who" style="margin-top:6px">Rest day${str ? ' + strength' : ''}</div><p class="small muted" style="margin:0">${beforeLong ? 'Big run tomorrow — hydrate, eat well and get to bed early. ' : 'Recovery is when you get fitter. '}${nxTxt}</p>${str ? `<button class="btn block" style="margin-top:10px" data-open="${esc(str.id)}">View strength session</button>` : ''}</div>`;
 }
@@ -1098,7 +1108,7 @@ function renderWeek(r) {
 }
 
 // ---------- WORKOUT SHEET ----------
-let sheetId = null, sheetOpener = null;
+let sheetId = null, sheetOpener = null, sheetOnClose = null;
 function findW(id, r = me()) { return allWorkouts(r).find(w => w.id === id); }
 function zoneColor(p) { return `var(--z${E.PACE_INFO[p]?.zone ?? 2})`; }
 function chartSvg(steps, pt) {
@@ -1164,18 +1174,20 @@ function workoutHtml(id) {
       <h3>Done it? Log how it felt</h3><p class="tiny muted" style="margin:4px 0 10px">One tap marks it complete and tunes your future paces.</p>
       ${w.type !== 'strength' ? `<label class="f small" for="actkm">Actual distance <span class="muted">(optional, ${units()})</span></label><input id="actkm" class="input" inputmode="decimal" autocomplete="off" placeholder="${(t.m / (units() === 'mi' ? MI : 1000)).toFixed(1)}" style="margin-bottom:10px">` : ''}
       <div class="feel"><button class="btn" data-sact="done" data-feel="easy" aria-label="Mark done – felt too easy">Too easy<small>could do more</small></button><button class="btn primary" data-sact="done" data-feel="right" aria-label="Mark done – felt just right">Just right<small style="color:rgba(255,255,255,.85)">on target</small></button><button class="btn" data-sact="done" data-feel="hard" aria-label="Mark done – felt too hard">Too hard<small>struggled</small></button></div>
-      <hr><div class="row" style="flex-wrap:wrap"><label class="small" for="mvday" style="font-weight:700">${ICON.move} Reschedule</label><select id="mvday" class="input" style="flex:1;min-width:180px">${dayOpts}</select></div>
+      ${w.type === 'race' ? '' : `<hr><div class="row" style="flex-wrap:wrap"><label class="small" for="mvday" style="font-weight:700">${ICON.move} Reschedule</label><select id="mvday" class="input" style="flex:1;min-width:180px">${dayOpts}</select></div>`}
       <button class="btn ghost block" style="margin-top:8px" data-sact="skip">Skip this session</button>`}
   </div>`;
 }
 function openWorkout(id, opener) {
   const html = workoutHtml(id); if (!html) return;
   sheetId = id; if (opener) sheetOpener = opener;
-  if ($('#sheet')) { $('#sheet .in .body').innerHTML = html; bindSheet(); return; }
+  if ($('#sheet.on') && $('#sheet .in .body') && !$('#cf-title,#rn-title,#cp-title')) { $('#sheet .in .body').innerHTML = html; bindSheet(); return; }
   showSheet(html);
 }
 function showSheet(html, label = 'sheet-title') {
+  const opener = document.activeElement;
   closeSheet(true);
+  if (!sheetOpener && opener && opener !== document.body) sheetOpener = opener;
   const scrim = document.createElement('div'); scrim.className = 'scrim'; scrim.id = 'scrim';
   const sh = document.createElement('div'); sh.className = 'sheet'; sh.id = 'sheet'; sh.setAttribute('role', 'dialog'); sh.setAttribute('aria-modal', 'true'); sh.setAttribute('aria-labelledby', label);
   sh.innerHTML = `<div class="in"><div class="row" style="justify-content:flex-end;padding-top:4px"><button class="icon-btn" data-sact="close" aria-label="Close">${ICON.x}</button></div><div class="body">${html}</div></div>`;
@@ -1200,8 +1212,9 @@ function showSheet(html, label = 'sheet-title') {
 function bindSheet() { const mv = $('#mvday'); if (mv) mv.addEventListener('change', () => SHEET.move(mv)); }
 function closeSheet(instant) {
   const s = $('#sheet'), c = $('#scrim'); if (!s) return;
+  const cb = sheetOnClose; sheetOnClose = null; if (cb) setTimeout(cb, 0);
   document.body.style.overflow = ''; $('#root').inert = false;
-  if (instant) { s.remove(); c?.remove(); return; }
+  if (instant) { s.remove(); c?.remove(); sheetOpener = sheetOpener && document.body.contains(sheetOpener) ? sheetOpener : null; return; }
   s.classList.remove('on'); c?.classList.remove('on'); setTimeout(() => { s.remove(); c?.remove(); }, 250);
   const op = sheetOpener; sheetOpener = null;
   setTimeout(() => { const el = op && document.body.contains(op) ? op : (sheetId && $(`[data-open="${CSS.escape(sheetId)}"]`)); el?.focus?.(); }, 260);
@@ -1210,8 +1223,9 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet()
 function confirmSheet({ title, body, ok = 'Confirm', danger = false }) {
   return new Promise(res => {
     showSheet(`<h2 id="cf-title" style="margin-top:4px">${esc(title)}</h2><p class="small muted">${esc(body)}</p><div class="grid2" style="margin-top:16px"><button class="btn" data-sact="cfno">Cancel</button><button class="btn ${danger ? 'danger' : 'primary'}" data-sact="cfyes" ${danger ? 'style="border-color:var(--bad)"' : ''}>${esc(ok)}</button></div>`, 'cf-title');
-    SHEET.cfyes = () => { closeSheet(); res(true); }; SHEET.cfno = () => { closeSheet(); res(false); };
-    SHEET.close = () => { closeSheet(); res(false); };
+    let done = false; const fin = v => { if (done) return; done = true; res(v); };
+    sheetOnClose = () => fin(false);
+    SHEET.cfyes = () => { sheetOnClose = null; closeSheet(); fin(true); }; SHEET.cfno = () => closeSheet();
   });
 }
 function refreshAll() { render(); if ($('#sheet') && sheetId && findW(sheetId)) { $('#sheet .in .body').innerHTML = workoutHtml(sheetId); bindSheet(); } }
@@ -1237,7 +1251,7 @@ const SHEET = {
       const oldId = w.id; w.day = to; w.date = E.fmtDate(E.addDays(E.parseDate(wk.start), to));
       let nid = w.date + '-' + w.type; if (wk.workouts.some(x => x !== w && x.id === nid) || (r.log[nid] && nid !== oldId)) nid += '-' + uid();
       w.id = nid; if (r.log[oldId]) { r.log[w.id] = r.log[oldId]; delete r.log[oldId]; }
-      wk.workouts.sort((a, b) => a.day - b.day); sheetId = w.id; save(); refreshAll();
+      wk.workouts.sort((a, b) => a.day - b.day); if (sheetId === oldId) sheetId = w.id; save(); refreshAll();
     };
     doMove(d);
     const runsThatDay = wk.workouts.filter(x => x.day === d && x.type !== 'strength').length;
@@ -1267,7 +1281,7 @@ function renderPlan(r) {
   const race = G.race && P.goal !== 'start' ? E.RACES[G.race] : null;
   const daysTo = r.plan.raceDate ? daysBetween(todayStr(), r.plan.raceDate) : null;
   const pred = race ? E.predict(vdotNow(r), race.m) : null;
-  const target = race ? E.predict(r.plan.goalV + adjOf(r), race.m) : null;
+  const target = race ? (adjOf(r) ? E.predict(r.plan.goalV + adjOf(r), race.m) : (r.plan.goalSec || E.predict(r.plan.goalV, race.m))) : null;
   const doneN = allWorkouts(r).filter(w => r.log[w.id]?.done).length;
   const hit = hitRate(r);
   const max = Math.max(...ws.map(w => w.km), 1);
@@ -1334,7 +1348,7 @@ function renderMe(r) {
   const prefsTxt = Object.entries(P.prefs || {}).filter(([, v]) => v === 'love').map(([k]) => PREF_LIST.find(p => p[0] === k)?.[1]).filter(Boolean).join(', ');
   const others = Object.entries(S.profiles).filter(([id]) => id !== S.activeId);
   return `<section class="stack">
-    <div class="row" style="gap:14px"><div class="avatar" aria-hidden="true" style="width:56px;height:56px;font-size:22px;background:${tc(goalType(P.goal))};color:var(--t-ink);border:0">${esc(P.name.charAt(0).toUpperCase())}</div><div><h1>${esc(P.name)}</h1><div class="small muted">${esc(E.GOALS[P.goal].name)} · ${esc(P.level.charAt(0).toUpperCase() + P.level.slice(1))} · ${P.days.length} days/week</div></div></div>
+    <div class="row" style="gap:14px"><div class="avatar" aria-hidden="true" style="width:56px;height:56px;font-size:22px;background:${tc(goalType(P.goal))};color:var(--t-ink);border:0">${esc(P.name.charAt(0).toUpperCase())}</div><div><h1>${esc(P.name)}</h1><div class="small muted">${esc(E.GOALS[P.goal].name)} · ${esc(P.level.charAt(0).toUpperCase() + P.level.slice(1))} · ${P.goal === 'start' ? Math.min(3, P.days.length) : P.days.length} runs/week</div></div></div>
     <div class="grid2"><div class="stat"><div class="l">Distance logged</div><div class="v">${distKm(kmDone, 0)}</div></div><div class="stat"><div class="l">Runs done</div><div class="v">${done.length}</div></div><div class="stat"><div class="l">Completed (of due)</div><div class="v">${hit == null ? '—' : hit + '%'}</div></div><div class="stat"><div class="l">Week streak</div><div class="v">${streakOf(r)}</div></div></div>
     <div class="card"><h2>Your plan setup</h2>
       <table style="margin-top:6px"><tbody>
@@ -1368,7 +1382,10 @@ function renderMe(r) {
 
 // ---------- plan editing (keeps history) ----------
 function rebuildPlan(r, p) {
-  if (r.profile.recentLogged) { p.recent = { m: r.profile.recentLogged.m, sec: r.profile.recentLogged.sec }; p.recentLogged = r.profile.recentLogged; r.base = 0; }
+  if (r.profile.recentLogged && !r.profile.recentLogged.applied) { p.recent = { m: r.profile.recentLogged.m, sec: r.profile.recentLogged.sec }; }
+  else { const fit = vdotNow(r) - num(r.fb); p.recent = { m: 5000, sec: Math.round(E.predict(fit, 5000)) }; }
+  if (p.recentLogged) p.recentLogged = { ...p.recentLogged, applied: true };
+  r.base = 0; r.adj = 0;
   const ci = curWeekIndex(r); const last = r.plan.weeks[ci - 1];
   if (last) {
     const done = last.workouts.filter(w => r.log[w.id]?.done && w.type !== 'strength');
@@ -1381,7 +1398,15 @@ function rebuildPlan(r, p) {
   const newMon = np.weeks[0].start;
   const hist = r.plan.weeks.filter(w => w.start < newMon);
   const overlap = r.plan.weeks.find(w => w.start === newMon);
-  if (overlap) { const keep = overlap.workouts.filter(w => w.date < p.startDate && r.log[w.id]); np.weeks[0].workouts = [...keep, ...np.weeks[0].workouts].sort((a, b) => a.day - b.day); }
+  if (overlap) {
+    const t0 = todayStr();
+    const keep = overlap.workouts.filter(w => (w.date < p.startDate || w.date === t0) && r.log[w.id]);
+    const keptDates = new Set(keep.filter(w => w.type !== 'strength').map(w => w.date));
+    np.weeks[0].workouts = [...keep, ...np.weeks[0].workouts.filter(w => !keep.some(k => k.id === w.id) && !(w.type !== 'strength' && keptDates.has(w.date)))].sort((a, b) => a.day - b.day);
+  }
+  // drop logs for future sessions that no longer exist
+  const ids = new Set(np.weeks.flatMap(w => w.workouts.map(x => x.id)).concat(hist.flatMap(w => w.workouts.map(x => x.id))));
+  Object.keys(r.log).forEach(k => { if (!ids.has(k) && k.slice(0, 10) > todayStr()) delete r.log[k]; });
   np.weeks = [...hist, ...np.weeks];
   np.weeks.forEach((w, i) => { w.index = i; w.workouts.forEach(x => { x.week = i; }); });
   r.historyWeeks = hist.length;
@@ -1422,11 +1447,12 @@ const ACTIONS = {
     if (!s || v < 15 || v > 90) { err.textContent = !s ? 'Enter a time like 24:30 or 1:52:10.' : 'That time looks unusual for this distance — please check it.'; inp.setAttribute('aria-invalid', 'true'); inp.focus(); return; }
     const r = me(); const wk = r.plan.weeks[curWeekIndex(r)];
     r.base = Math.max(-10, Math.min(10, v - wk.v)); r.fb = 0; r.adj = 0; r.profile.recentLogged = { m, sec: s, at: todayStr() };
-    save(); render(); toast(`Fitness updated to ${v.toFixed(1)} — all paces recalculated.`);
+    Object.values(r.log).forEach(l => { l.fbDelta = 0; if (l.feel) l.feelOld = l.feel; delete l.feel; });
+    save(); render(); toast(`Fitness updated to ${(wk.v + r.base).toFixed(1)} — all paces recalculated.`);
   },
   invite() { shareInvite(); },
   ics() { downloadIcs(); },
-  shareweek() { shareWeek(); },
+  shareweek() { shareWeek(tab === 'me'); },
   export() {
     const r = me(); if (!r) return;
     const blob = new Blob([JSON.stringify({ app: 'pacer', v: 1, runner: r }, null, 1)], { type: 'application/json' });
@@ -1438,7 +1464,7 @@ const ACTIONS = {
       try {
         const d = JSON.parse(await i.files[0].text()); const runner = cleanRunner(d);
         const id = uid(); S.profiles[id] = runner; const prev = S.activeId; S.activeId = id;
-        try { ob.active = false; viewWeek = null; renderWeek(runner); } catch (e) { delete S.profiles[id]; S.activeId = prev; throw e; }
+        try { ob.active = false; viewWeek = null; renderWeek(runner); viewWeek = null; } catch (e) { delete S.profiles[id]; S.activeId = prev; viewWeek = null; throw e; }
         save(); render(); toast(`Restored ${runner.profile.name}’s plan as a runner on this device.`);
       } catch (e) { console.warn(e); toast('That doesn’t look like a valid Pacer backup file.'); }
     };
@@ -1450,10 +1476,10 @@ function cleanRunner(d) {
   if (!d || d.app !== 'pacer' || !d.runner || !d.runner.plan || !Array.isArray(d.runner.plan.weeks) || !d.runner.profile) throw new Error('bad');
   const r = d.runner, P = r.profile;
   if (!Object.prototype.hasOwnProperty.call(E.GOALS, P.goal)) throw new Error('goal');
-  const prof = { ...P, name: String(P.name || 'Runner').slice(0, 30), level: E.LEVELS.includes(P.level) ? P.level : 'beginner', units: P.units === 'mi' ? 'mi' : 'km', days: (P.days || []).map(Number).filter(x => x >= 0 && x <= 6), longDay: num(P.longDay, 6), weekdayMax: P.weekdayMax ? num(P.weekdayMax) : null, strength: num(P.strength), startDate: String(P.startDate || todayStr()).slice(0, 10), prefs: typeof P.prefs === 'object' && P.prefs ? P.prefs : {} };
+  const prof = { ...P, name: String(P.name || 'Runner').slice(0, 30), level: E.LEVELS.includes(P.level) ? P.level : 'beginner', units: P.units === 'mi' ? 'mi' : 'km', days: (P.days || []).map(Number).filter(x => x >= 0 && x <= 6), longDay: num(P.longDay, 6), weekdayMax: P.weekdayMax ? num(P.weekdayMax) : null, strength: num(P.strength), startDate: String(P.startDate || todayStr()).slice(0, 10), prefs: typeof P.prefs === 'object' && P.prefs ? P.prefs : {}, goalSec: P.goalSec ? num(P.goalSec) || null : null, weeks: P.weeks ? num(P.weeks) || null : null, raceDate: /^\d{4}-\d\d-\d\d$/.test(P.raceDate || '') ? P.raceDate : null, raceName: String(P.raceName || '').slice(0, 60), invitedBy: P.invitedBy ? String(P.invitedBy).slice(0, 30) : null, recent: P.recent && num(P.recent.m) && num(P.recent.sec) ? { m: num(P.recent.m), sec: num(P.recent.sec) } : null, weeklyKm: P.weeklyKm != null ? num(P.weeklyKm) : null, longestKm: P.longestKm != null ? num(P.longestKm) : null };
   const cleanSteps = st => (Array.isArray(st) ? st : []).map(s => s && s.rep ? { rep: Math.max(1, Math.min(50, num(s.rep, 1))), steps: cleanSteps(s.steps) } : { k: String(s.k || 'run'), p: E.PACE_INFO[s.p] ? s.p : 'E', label: String(s.label || ''), ...(s.m != null ? { m: num(s.m) } : { s: num(s.s, 60) }) });
   const weeks = r.plan.weeks.map((w, i) => ({ index: i, phase: ['Base', 'Build', 'Peak', 'Taper', 'Race'].includes(w.phase) ? w.phase : 'Base', cut: !!w.cut, start: String(w.start).slice(0, 10), v: num(w.v, 35), km: num(w.km),
-    workouts: (w.workouts || []).filter(x => TYPES[x.type]).map(x => ({ id: String(x.id), type: x.type, day: Math.max(0, Math.min(6, num(x.day))), date: String(x.date).slice(0, 10), week: i, km: num(x.km), sec: num(x.sec), mins: num(x.mins, 20), title: String(x.title || ''), purpose: String(x.purpose || ''), note: x.note ? String(x.note) : undefined, items: Array.isArray(x.items) ? x.items.map(it => [String(it[0]), String(it[1])]) : undefined, steps: cleanSteps(x.steps) })) }));
+    workouts: (w.workouts || []).filter(x => TYPES[x.type]).map(x => ({ id: String(x.id), type: x.type, day: Math.max(0, Math.min(6, num(x.day))), date: /^\d{4}-\d\d-\d\d$/.test(String(x.date)) ? String(x.date) : E.fmtDate(E.addDays(E.parseDate(String(w.start).slice(0, 10)), Math.max(0, Math.min(6, num(x.day))))), week: i, km: num(x.km), sec: num(x.sec), mins: num(x.mins, 20), title: String(x.title || ''), purpose: String(x.purpose || ''), note: x.note ? String(x.note) : undefined, items: Array.isArray(x.items) ? x.items.map(it => [String(it[0]), String(it[1])]) : undefined, steps: cleanSteps(x.steps) })) }));
   if (!weeks.length || weeks.some(w => !/^\d{4}-\d\d-\d\d$/.test(w.start))) throw new Error('weeks');
   const log = {}; Object.entries(r.log || {}).forEach(([k, v]) => { if (v && typeof v === 'object') log[String(k)] = { done: !!v.done, skipped: !!v.skipped, feel: ['easy', 'right', 'hard'].includes(v.feel) ? v.feel : undefined, km: v.km ? num(v.km) : null, at: String(v.at || ''), fbDelta: num(v.fbDelta) }; });
   const pl = r.plan;
@@ -1468,14 +1494,15 @@ async function copyText(text, okMsg) {
 }
 async function shareInvite() {
   const r = me(); const P = r.profile; const G = E.GOALS[P.goal];
-  const inv = { by: P.name, g: P.goal, d: r.plan.raceDate && r.plan.raceDate >= todayStr() ? r.plan.raceDate : null, n: P.raceName || '' };
+  const isRaceGoal = G.race && P.goal !== 'start';
+  const inv = { by: P.name, g: P.goal, d: isRaceGoal && r.plan.raceDate && r.plan.raceDate >= todayStr() ? r.plan.raceDate : null, n: P.raceName || '' };
   const url = appUrl() + '#invite=' + b64(inv);
   const text = inv.d ? `I’m training for ${P.raceName || 'a ' + G.name.toLowerCase()} on ${niceDate(inv.d, { day: 'numeric', month: 'long' })} with Pacer — a free running coach. Build your own plan and train with me:` : `I’m using Pacer, a free running coach that builds a plan around your week. Get yours:`;
   if (navigator.share) { try { await navigator.share({ title: 'Train with me on Pacer', text, url }); return; } catch (e) { if (e.name === 'AbortError') return; } }
   copyText(text + ' ' + url, 'Invite link copied — paste it to your mates!');
 }
-async function shareWeek() {
-  const r = me(); const wk = r.plan.weeks[viewWeek ?? curWeekIndex()];
+async function shareWeek(fromMe) {
+  const r = me(); const wk = r.plan.weeks[fromMe || viewWeek == null ? curWeekIndex() : viewWeek];
   const lines = [`${r.profile.name}’s week ${wk.index + 1} (${wk.phase})`, ...wk.workouts.map(w => `${r.log[w.id]?.done ? '✅' : '▫️'} ${E.DAYS[w.day]}: ${fmtTitle(w.title)}${w.type === 'strength' ? '' : ' — ' + dist(wTotals(w, r).m)}`), '', 'Plan yours free: ' + appUrl()];
   const text = lines.join('\n');
   if (navigator.share) { try { await navigator.share({ title: 'My running week', text }); return; } catch (e) { if (e.name === 'AbortError') return; } }
@@ -1504,7 +1531,7 @@ function downloadIcs() {
 function applyTheme() {
   if (S.theme) document.documentElement.dataset.theme = S.theme; else delete document.documentElement.dataset.theme;
   const dark = S.theme ? S.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-  $$('meta[name="theme-color"]').forEach(m => { if (S.theme) m.setAttribute('content', dark ? '#0b0d12' : '#f6f7f9'); });
+  $$('meta[name="theme-color"]').forEach(m => { if (!m.dataset.orig) m.dataset.orig = m.getAttribute('content'); m.setAttribute('content', S.theme ? (dark ? '#0b0d12' : '#f6f7f9') : m.dataset.orig); });
 }
 
 // ---------- ONBOARDING ----------
@@ -1519,6 +1546,7 @@ function startOnboarding(pre = {}, opts = {}) {
   if (pre.goalSec) d.goalTime = E.fmtTime(pre.goalSec);
   if (opts.editing) d.startDate = pre.startDate && pre.startDate > todayStr() ? pre.startDate : todayStr();
   if (d.raceDate && d.raceDate <= d.startDate) d.raceDate = '';
+  if (d.goal === 'start') d.level = 'beginner';
   ob.active = true; ob.step = opts.editing ? 1 : 0; ob.d = d; ob.opts = opts; ob.errors = {}; closeSheet(true); render(); window.scrollTo({ top: 0 });
 }
 const STEPS = ['welcome', 'goal', 'level', 'current', 'race', 'schedule', 'likes', 'name', 'summary'];
@@ -1535,7 +1563,7 @@ function stepValid() {
   const d = ob.d, s = STEPS[ob.step];
   if (s === 'name') return d.name.trim().length > 0;
   if (s === 'goal') return !!d.goal;
-  if (s === 'level') return !!d.level;
+  if (s === 'level') return d.goal === 'start' || !!d.level;
   if (s === 'race') return !raceErr();
   if (s === 'schedule') return d.days.length >= 2 && d.days.includes(+d.longDay);
   return true;
@@ -1669,7 +1697,8 @@ function renderOnboarding() {
     case 'summary': {
       const p = profileFromOb(); let plan = null;
       try { plan = E.generate(p); } catch (e) { console.error(e); }
-      if (!plan) { body = `<h1>Hmm, that didn’t work</h1><p class="lead">Something went wrong building your plan — go back and check your dates.</p>`; cta = 'Back'; break; }
+      if (!plan) { body = `<h1>Hmm, that didn’t work</h1><p class="lead">Something went wrong building your plan — go back and check your dates.</p>`; cta = 'Back'; ob.failed = true; break; }
+      ob.failed = false;
       const race = G.race && d.goal !== 'start' ? E.RACES[G.race] : null;
       const pt = E.paceTable(plan.curV, plan.goalPace, plan.goalFb);
       const fmtP = spk => E.fmtTime(pv(spk)) + '/' + d.units;
@@ -1680,7 +1709,7 @@ function renderOnboarding() {
       const peak = Math.max(...plan.weeks.map(w => w.km));
       body = `<h1>${ob.opts.editing ? 'Your updated plan' : `Ready, ${esc(d.name.trim())}!`}</h1><p class="lead">Here’s what we’ve built for you.</p>
         <div class="card hero"><div class="eyebrow muted">${esc(p.raceName || G.name)}</div>
-          <div class="big" style="margin-top:8px">${plan.weeks.length} weeks</div><div class="small muted">${p.goal === 'start' ? 3 : p.days.length} runs a week · starts ${niceDate(p.startDate, { weekday: 'short', day: 'numeric', month: 'short' })}${plan.raceDate ? ' · race ' + niceDate(plan.raceDate, { day: 'numeric', month: 'short' }) : ''}</div>
+          <div class="big" style="margin-top:8px">${plan.weeks.length} weeks</div><div class="small muted">${p.goal === 'start' ? Math.min(3, p.days.length) : p.days.length} runs a week · starts ${niceDate(p.startDate, { weekday: 'short', day: 'numeric', month: 'short' })}${plan.raceDate ? ' · race ' + niceDate(plan.raceDate, { day: 'numeric', month: 'short' }) : ''}</div>
           ${race ? `<div class="grid2" style="margin-top:14px"><div class="stat"><div class="l">${p.goalSec && Math.abs(p.goalSec - target) < 30 ? 'Your target' : 'Our suggested target'}</div><div class="v">${E.fmtTime(target)}</div></div><div class="stat"><div class="l">If you raced today</div><div class="v">${E.fmtTime(E.predict(plan.curV, race.m))}</div></div></div>` : ''}
           <div class="grid2" style="margin-top:10px"><div class="stat"><div class="l">Peak week</div><div class="v">${(peak / (d.units === 'mi' ? 1.609344 : 1)).toFixed(0)} ${d.units}</div></div><div class="stat"><div class="l">${d.goal === 'start' ? 'Finish with' : 'Easy pace'}</div><div class="v">${d.goal === 'start' ? '30 min run' : fmtP(pt.E)}</div></div></div></div>
         ${key ? `<div class="card flat" style="margin-top:12px;--tc:${tc(key.type)}"><div class="eyebrow muted">A taste of week ${key.week + 1}</div><div class="row" style="margin-top:8px"><span class="badge">${TYPES[key.type].ab}</span><div><b>${E.DAYS[key.day]} · ${esc(fmtTitle(key.title))}</b><div class="small muted">key pace ${keyPace(key, keyPt)}</div></div></div></div>` : ''}
@@ -1690,10 +1719,10 @@ function renderOnboarding() {
       break;
     }
   }
-  return `<div class="ob">${prog}<div class="body">${body}</div><div class="foot">${(ob.opts.editing || ob.opts.newRunner) && me() && ob.step <= 1 ? '<button class="btn" data-ob="cancel">Cancel</button>' : ''}<button class="btn primary" data-ob="next" ${stepValid() ? '' : 'disabled'}>${cta}</button></div></div>`;
+  return `<div class="ob">${prog}<div class="body">${body.replace('<h1', '<h1 tabindex="-1"')}</div><div class="foot">${(ob.opts.editing || ob.opts.newRunner) && me() && ob.step <= 1 ? '<button class="btn" data-ob="cancel">Cancel</button>' : ''}<button class="btn primary" data-ob="${s === 'summary' && ob.failed ? 'back' : 'next'}" ${stepValid() ? '' : 'disabled'}>${cta}</button></div></div>`;
 }
 function strengthBlock(d) { return `<div style="margin-top:20px"><label class="f">Strength &amp; mobility sessions</label><p class="tiny muted" style="margin:-2px 0 8px">20–30 min bodyweight routines that make you faster and more injury-resistant.</p><div class="chips" role="group" aria-label="Strength sessions per week">${[[0, 'None'], [1, '1 / week'], [2, '2 / week']].map(([v, l]) => `<button class="chip" data-set="strength" data-val="${v}" aria-pressed="${+d.strength === v}">${l}</button>`).join('')}</div></div>`; }
-function rerenderKeep(focusId) { const y = window.scrollY; render(); window.scrollTo(0, y); if (focusId) { const el = document.getElementById(focusId); el?.focus(); } }
+function rerenderKeep(focus) { const y = window.scrollY; render(); window.scrollTo(0, y); if (focus) { const el = focus.startsWith('[') ? $(focus) : document.getElementById(focus); el?.focus({ preventScroll: true }); } }
 function bindOnboarding() {
   const d = ob.d;
   const refreshBtn = () => { const b = $('[data-ob="next"]'); if (b) b.disabled = !stepValid(); };
@@ -1701,16 +1730,17 @@ function bindOnboarding() {
     const k = b.dataset.set; let v = b.dataset.val;
     if (k === 'longDay' || k === 'strength') v = +v; if (k === 'weekdayMax') v = v ? +v : null;
     if (k === 'units' && v !== d.units) { /* stored values are km; display converts */ }
-    d[k] = v; if (k === 'goal') { d.weeks = null; if (v === 'start') d.level = 'beginner'; else if (d.level === 'beginner' && ob.opts.autoLevel) d.level = ''; }
-    rerenderKeep();
+    const wasStart = d.goal === 'start';
+    d[k] = v; if (k === 'goal') { d.weeks = null; if (v === 'start') d.level = 'beginner'; else if (wasStart) d.level = ''; }
+    rerenderKeep(`[data-set="${k}"][data-val="${b.dataset.val}"]`);
     const step = ob.step;
     if (['goal', 'level'].includes(k)) { clearTimeout(ob._t); ob._t = setTimeout(() => { if (ob.step === step && stepValid()) advance(); }, 220); }
   }));
-  $$('[data-pref]').forEach(b => b.addEventListener('click', () => { d.prefs = { ...d.prefs, [b.dataset.pref]: b.dataset.val }; rerenderKeep(); }));
+  $$('[data-pref]').forEach(b => b.addEventListener('click', () => { d.prefs = { ...d.prefs, [b.dataset.pref]: b.dataset.val }; rerenderKeep(`[data-pref="${b.dataset.pref}"][data-val="${b.dataset.val}"]`); }));
   $$('[data-day]').forEach(b => b.addEventListener('click', () => {
     const i = +b.dataset.day; d.days = d.days.includes(i) ? d.days.filter(x => x !== i) : [...d.days, i].sort((a, c) => a - c);
     if (!d.days.includes(+d.longDay)) d.longDay = d.days.includes(6) ? 6 : d.days.includes(5) ? 5 : d.days[d.days.length - 1] ?? 6;
-    rerenderKeep();
+    rerenderKeep(`[data-day="${i}"]`);
   }));
   $$('[data-step]').forEach(b => b.addEventListener('click', () => { const inp = document.getElementById(b.dataset.step); inp.value = Math.max(+inp.min, Math.min(+inp.max, +inp.value + +b.dataset.dir)); inp.dispatchEvent(new Event('input')); }));
   $$('[data-bind]').forEach(inp => {
@@ -1751,6 +1781,9 @@ function advance() {
 }
 function clearInvite() { ob.invite = null; if (location.hash) history.replaceState(null, '', location.pathname + location.search); }
 function finishOnboarding() {
+  try { finishOnboardingInner(); } catch (e) { console.error(e); toast('Sorry — we couldn’t build that plan. Check your dates and try again.'); }
+}
+function finishOnboardingInner() {
   const p = profileFromOb();
   if (ob.opts.editing && me()) { rebuildPlan(me(), p); }
   else { const id = uid(); S.profiles[id] = { profile: p, plan: E.generate(p), log: {}, fb: 0, base: 0, created: todayStr() }; S.activeId = id; }
@@ -1793,6 +1826,7 @@ async function boot() {
   }
   render();
 }
+window.addEventListener('hashchange', () => { if (/invite=/.test(location.hash)) boot(); });
 boot();
 if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
 })();

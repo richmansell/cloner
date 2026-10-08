@@ -348,7 +348,11 @@ const Engine = (() => {
       if (want > curV + maxGain) {
         goalV = curV + maxGain;
         goalNote = `Your goal of ${fmtTime(P.goalSec)} is ambitious for ${Wm} weeks. We’ll train you towards ${fmtTime(predict(goalV, raceM))} and adapt as you get fitter.`;
-      } else goalV = Math.max(want, curV);
+      } else if (want >= curV) goalV = want;
+    }
+    if (isRace && userGoal && vdotFrom(raceM, userGoal) < curV) {
+      goalNote = `You’re already capable of about ${fmtTime(predict(curV, raceM))} — faster than your goal of ${fmtTime(userGoal)}. We’ve set a target of ${fmtTime(predict(goalV, raceM))} instead.`;
+      userGoal = null;
     }
     if (isRace) { goalSec = predict(goalV, raceM); if (userGoal && userGoal >= goalSec) goalSec = userGoal; goalPace = goalSec / (raceM / 1000); }
     const goalFb = G.race === '5k' || !G.race ? 'FIVE' : G.race === '10k' ? 'TEN' : G.race === 'half' ? 'HM' : 'M';
@@ -581,7 +585,7 @@ const Engine = (() => {
     const raceW = weeks.flatMap(z => z.workouts).find(z => z.type === 'race');
     return {
       created: fmtDate(new Date()), profile: P, weeks, curV, goalV, goalPace, goalSec, userGoal, goalFb,
-      raceDate: raceW ? raceW.date : null, warnings,
+      raceDate: (isRace || P.goal === 'start') && raceW ? raceW.date : null, warnings,
     };
   }
   const QUAL = new Set(['tempo', 'intervals', 'hills', 'fartlek', 'progression', 'racepace']);
