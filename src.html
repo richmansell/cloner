@@ -481,7 +481,7 @@ function renderWeek(r) {
     </div>
     <div class="row between no-print">
       <button class="icon-btn" data-act="prevw" aria-label="Previous week" ${viewWeek === 0 ? 'disabled' : ''}>${ICON.left}</button>
-      ${isCur ? `<span class="small muted">${runs.length} run${runs.length === 1 ? '' : 's'} this week</span>` : `<button class="btn ghost" data-act="thisw">Back to this week</button>`}
+      ${isCur ? `<span class="small muted">${runs.length} run${runs.length === 1 ? '' : 's'} this week</span>` : viewWeek === curWeekIndex(r) ? `<span class="small muted">Your first week</span>` : `<button class="btn ghost" data-act="thisw">Back to this week</button>`}
       <button class="icon-btn" data-act="nextw" aria-label="Next week" ${viewWeek === ws.length - 1 ? 'disabled' : ''}>${ICON.right}</button>
     </div>
     ${allDone ? `<div class="card celebrate"><div class="who"><span class="check pop">${ICON.check}</span> Week ${viewWeek + 1} complete!</div><p class="small muted" style="margin:0 0 10px">${dist(doneM)} · ${runs.filter(w => r.log[w.id]?.done).length}/${runs.length} runs${streak >= 2 ? ` · ${streak}-week streak 🔥` : ''}</p><button class="btn block" data-act="shareweek">${ICON.share} Share with your mates</button></div>` : ''}
@@ -537,7 +537,7 @@ function workoutHtml(id) {
   const t = wTotals(w, r); const st = statusOf(w, r); const log = r.log[id];
   const avg = t.m ? t.sec / (t.m / 1000) : 0;
   const t0 = todayStr();
-  const dayOpts = [...Array(7)].map((_, d) => { const date = E.fmtDate(E.addDays(E.parseDate(wk.start), d)); const others = wk.workouts.filter(x => x !== w && x.date === date && x.type !== 'strength'); return `<option value="${d}" ${d === w.day ? 'selected' : ''} ${date < planStart(r) ? 'disabled' : ''}>${E.DAYS_LONG[d]} ${E.parseDate(date).getDate()}${others.length ? ' · ' + others.map(o => TYPES[o.type].label).join(', ') : ' · free'}</option>`; }).join('');
+  const dayOpts = [...Array(7)].map((_, d) => { const date = E.fmtDate(E.addDays(E.parseDate(wk.start), d)); const others = wk.workouts.filter(x => x !== w && x.date === date && x.type !== 'strength'); return `<option value="${d}" ${d === w.day ? 'selected' : ''} ${date < planStart(r) ? 'disabled' : ''}>${E.DAYS_LONG[d]} ${E.parseDate(date).getDate()}${d === w.day ? ' · this session' : others.length ? ' · ' + others.map(o => TYPES[o.type].label).join(', ') : ' · free'}</option>`; }).join('');
   const todayInWeek = t0 >= wk.start && t0 <= E.fmtDate(E.addDays(E.parseDate(wk.start), 6));
   const kp = w.type !== 'strength' ? keyPace(w, pt) : '';
   return `
@@ -671,7 +671,7 @@ function renderPlan(r) {
   const raceDone = daysTo != null && daysTo < 0;
   return `<section class="stack">
     <div class="card hero">
-      <div class="eyebrow muted">${esc(P.raceName || G.name)}${race ? ' · ' + race.name : ''}</div>
+      <div class="eyebrow muted">${esc(P.raceName || G.name)}${race && P.raceName ? ' · ' + race.name : ''}</div>
       ${P.invitedBy ? `<div class="small muted" style="margin-top:4px">${ICON.users} Training with ${esc(P.invitedBy)}</div>` : ''}
       ${r.plan.raceDate ? `<div style="margin-top:10px"><div class="big">${daysTo > 0 ? daysTo : daysTo === 0 ? 'Race day!' : 'Done'}</div><div class="small muted">${daysTo > 0 ? `day${daysTo === 1 ? '' : 's'} to go · ` : ''}${niceDate(r.plan.raceDate, { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' })}</div></div>` :
       `<div class="big" style="margin-top:10px">${ws.length} weeks</div><div class="small muted">${niceDate(ws[0].start)} – ${niceDate(E.fmtDate(E.addDays(E.parseDate(ws[ws.length - 1].start), 6)))}</div>`}
@@ -910,7 +910,7 @@ function startOnboarding(pre = {}, opts = {}) {
   d.raceDate = d.raceDate || ''; d.raceName = d.raceName || ''; d.name = d.name || '';
   if (pre.recent) { d.recentDist = pre.recent.m; d.recentTime = E.fmtTime(pre.recent.sec); }
   if (pre.goalSec) d.goalTime = E.fmtTime(pre.goalSec);
-  if (opts.editing) d.startDate = todayStr();
+  if (opts.editing) d.startDate = pre.startDate && pre.startDate > todayStr() ? pre.startDate : todayStr();
   if (d.raceDate && d.raceDate <= d.startDate) d.raceDate = '';
   ob.active = true; ob.step = opts.editing ? 1 : 0; ob.d = d; ob.opts = opts; ob.errors = {}; closeSheet(true); render(); window.scrollTo({ top: 0 });
 }

@@ -202,7 +202,7 @@ const Engine = (() => {
       return { rep: n, steps: [run({ s: 20, p: 'STR', label: 'Stride' }), rec({ s: 60, p: 'WALK', label: 'Walk / jog back' })] };
     },
     easy(o) {
-      const steps = [run({ m: Math.round(o.km * 1000), p: 'E', label: 'Easy' })];
+      const steps = [run({ m: Math.round(o.strides ? Math.max(1500, o.km * 1000 - 900) : o.km * 1000), p: 'E', label: 'Easy' })];
       if (o.strides) steps.push(B.strides(o));
       return { type: 'easy', title: `${o.km} km easy run${o.strides ? ' + strides' : ''}`, purpose: o.strides ? 'Aerobic base plus a few relaxed strides at the end to keep your legs quick.' : 'The foundation of everything. Keep it genuinely easy — slower than you think. Easy days make hard days possible.', steps };
     },
