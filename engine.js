@@ -339,7 +339,7 @@ const Engine = (() => {
     const taper = isRace ? (Wm >= 2 ? Math.max(1, Math.min(G.taper, Wm - 2)) : 0) : 0;
     const curV = currentVdot(P);
     const raceM = G.race ? RACES[G.race].m : null;
-    const maxGain = Wm * [0.45, 0.35, 0.28, 0.2][P.lvl];
+    const maxGain = Math.min(Wm * [0.32, 0.22, 0.16, 0.11][P.lvl], [8, 6, 4.5, 3.5][P.lvl]);
     let goalV = curV + Math.min(maxGain, [3, 2.5, 2, 1.5][P.lvl]);
     let goalPace = null, goalSec = null, goalNote = null, userGoal = null;
     if (isRace && P.goalSec) {
